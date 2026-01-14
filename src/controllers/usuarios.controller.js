@@ -4,7 +4,14 @@ class UsuariosController {
   async create(req, res) {
     try {
       const novoUsuario = await Usuarios.create(req.body);
-      res.json(novoUsuario);
+
+      const response = {
+        id: novoUsuario.id,
+        nome: novoUsuario.nome,
+        email: novoUsuario.email
+      };
+
+      res.json(response);
       return novoUsuario;
     } catch (error) {
       res.status(404).json(error + "Bad Request");
@@ -14,7 +21,7 @@ class UsuariosController {
 
   async getAll(req, res) {
     try {
-      const users = await Usuarios.findAll();
+      const users = await Usuarios.findAll({attributes: ['id', 'nome', 'email']}); //exibe apenas os atributos que eu quero
       res.json(users);
     } catch (error) {
       console.log(`Seu erro foi:  ${error}`);
@@ -24,7 +31,7 @@ class UsuariosController {
 
   async getById(req, res) {
     try {
-      const userId = await Usuarios.findByPk(req.params.id);
+      const userId = await Usuarios.findByPk(req.params.id, {attributes: ['id', 'nome', 'email']});
       if (!userId) {
         console.log(`User id não existe`);
         
@@ -39,19 +46,20 @@ class UsuariosController {
 
   async update(req, res) {
     try {
-      if (!req.params.id) {
-        return res.status(400).json({
-          erros: ["User Id necessário para atualizar informações do usuário"],
-        });
-      }
-      const userId = await Usuarios.findByPk(req.params.id);
+      const userId = await Usuarios.findByPk(req.userId);
 
       if (!userId) {
         throw new Error("User Id inválido");
       }
 
       const updateUser = await userId.update(req.body);
-      res.json(updateUser);
+
+      const response = {
+        id: updateUser.id,
+        nome: updateUser.nome,
+        email: updateUser.email
+      };
+      res.json(response);
       return updateUser;
     } catch (error) {
       return error;
@@ -59,14 +67,9 @@ class UsuariosController {
   }
 
   async deleteUser(req, res) {
-    if (!req.params.id) {
-      return res.status(400).json({
-        erros: ["User Id necessário para deletar usuário"],
-      });
-    }
     try {
       
-      const userId = await Usuarios.findByPk(req.params.id);
+      const userId = await Usuarios.findByPk(req.userId);
 
       if (!userId) {
         throw new Error("User Id inválido");
