@@ -9,3 +9,27 @@ npx sequelize-cli migration:generate --name nome-da-migration
 // Execute: npx sequelize-cli db:migrate
 
 token: a cada requisição que o cliente fizer, que precise estar logado no site, o cliente vai mandar um token no header da requisição e o backend vai validar o token
+
+há uma discussão sobre quando um usuario atualiza seus dados, pois o token deveria ser emitido novamente. 
+
+Nesse projeto, eu faço uma consulta ao banco de dados no middleware de login, nisso, ele verifica se a o authorization, obtem ele, e verifica o token, nisso que ele verifica o token, fazemos uma consulta ao banco para saber se os dados que estão no token são os mesmos que estão salvos no banco de dados
+
+
+    const {authorization} = req.headers;
+    console.log(`O que vem no header é ${authorization}`);
+
+    O que vem no header é Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywiZW1haWwiOiJsdXppYWFAeW9wbWFpbC5jb20iLCJpYXQiOjE3Njg0MzI4NDksImV4cCI6MTc2ODUxOTI0OX0.1KVOGVnfevgLdfnQXXefsPsWWgxH-ri2W60KWahyJho
+
+Uma requisição http é composta por:
+
+    1. Linha de requisição: método + utl + versão do protocolo
+
+    2. Headers: pares de chave:valor enviados pelo cliente para dar contexto ao servidor:
+        accept: tipos de mídias aceitos(application/json)
+        host
+        authorization: bearer token
+        content-type: corpo enviado, app/json, www-forms, buffer
+
+    3. Body opcional
+
+Response: Linha de status, response header, corpo da resposta

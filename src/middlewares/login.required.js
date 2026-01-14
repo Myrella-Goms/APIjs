@@ -1,9 +1,11 @@
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
+import Usuarios from '../models/Usuarios';
 
-
-export default (req, res, next) => {
+export default async (req, res, next) => {
 
     const {authorization} = req.headers;
+    console.log(`O que vem no header é ${authorization}`);
+    
     if (!authorization){
         return res.status(401).json({
             errors: ['Login inválido']
@@ -16,8 +18,17 @@ export default (req, res, next) => {
         const dados = jwt.verify(token, process.env.JWT_SECRET); //obtendo dados do usuario
 
         const { id, email } = dados;
+
+        const user = await Usuarios.findOne({where: {id, email}}); 
+
+        if(!user){
+            return res.status(401).json({
+                errors: ['Usuário inválido']
+            })
+        };
+        
         req.userId = id;
-        console.log(req.userId)
+        console.log(req.userId) 
         req.userEmail = email;
         console.log(req.userEmail)
         return next()
