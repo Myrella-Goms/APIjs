@@ -1,0 +1,11 @@
+npm run migrate - Executa migrations pendentes
+npm run migrate:undo - Desfaz última migration
+npm run migrate:reset - Reseta e reexecuta todas
+
+npx sequelize-cli migration:generate --name nome-da-migration
+
+
+// As tabelas agora são gerenciadas por migrations
+// Execute: npx sequelize-cli db:migrate
+
+token: a cada requisição que o cliente fizer, que precise estar logado no site, o cliente vai mandar um token no header da requisição e o backend vai validar o token
