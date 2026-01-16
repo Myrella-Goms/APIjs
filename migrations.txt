@@ -33,3 +33,5 @@ Uma requisição http é composta por:
     3. Body opcional
 
 Response: Linha de status, response header, corpo da resposta
+
+Seeders: dados para popular a tabela conforme o que o banco de dados espera (ignora campos virtuais)

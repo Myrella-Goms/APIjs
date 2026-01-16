@@ -5,7 +5,7 @@ import loginRequired from "../middlewares/login.required";
 
 const usuarioRoutes = new Router();
 
-usuarioRoutes.get('/findAll', loginRequired, usuariosController.getAll) //falha de segurança, pois não deveriamos listar todos os usuários
+usuarioRoutes.get('/findAll', usuariosController.getAll) //falha de segurança, pois não deveriamos listar todos os usuários
 usuarioRoutes.get('/findById/:id', usuariosController.getById)
 
 usuarioRoutes.post('/', user.create);
