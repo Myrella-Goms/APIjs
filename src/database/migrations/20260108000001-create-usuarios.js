@@ -17,7 +17,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true, // ← CONSTRAINT UNIQUE AQUI
+        unique: true,
       },
       senha_hash: {
         type: Sequelize.STRING,

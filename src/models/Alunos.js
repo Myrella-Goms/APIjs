@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 
-export default class Aluno extends Model {
+export default class Alunos extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -82,6 +82,5 @@ export default class Aluno extends Model {
         tableName: "alunos",
       }
     );
-    return this;
   }
 }

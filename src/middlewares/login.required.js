@@ -39,4 +39,4 @@ export default async (req, res, next) => {
     }
 };
 
-//criando um middleware que faz a validação se o usuario está logado, validando o authorization na header da requisição, depois extraindo o token do array com destructuring, depois preciso verificar o token com jwt.ferify, comparando o secret. Nisso eu já obtenho os dados do usuário
+//criando um middleware que faz a validação se o usuario está logado, validando o authorization na header da requisição, depois extraindo o token do array com destructuring, depois preciso verificar o token com jwt.ferify, comparando o secret. Nisso eu já obtenho os dados do usuário e checo no banco se eles existem. 

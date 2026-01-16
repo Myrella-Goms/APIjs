@@ -59,6 +59,7 @@ class UsuariosController {
         nome: updateUser.nome,
         email: updateUser.email
       };
+      
       res.json(response);
       return updateUser;
     } catch (error) {
