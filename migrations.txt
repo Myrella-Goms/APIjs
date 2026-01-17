@@ -34,4 +34,6 @@ Uma requisição http é composta por:
 
 Response: Linha de status, response header, corpo da resposta
 
-Seeders: dados para popular a tabela conforme o que o banco de dados espera (ignora campos virtuais)
+Seeders: dados para popular a tabela conforme o que o banco de dados espera (ignora campos virtuais)  
+npx sequelize seed:generate --name create-users  
+npx sequelize db:seed:all

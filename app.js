@@ -1,11 +1,11 @@
 import express from "express";
 import home from "./src/routes/home.routes";
 import sequelize from "./src/database/dbconnection";
-import "./src/models/Alunos"; // Importa o modelo
+import "./src/models/Learners"; // Importa o modelo
 import "./src/models/Usuarios"; // Importa o modelo
 import usuarioRoutes from "./src/routes/usuario.routes";
 import authRoutes from "./src/routes/auth.routes";
-import alunoRoutes from "./src/routes/aluno.routes";
+import learnerRoutes from "./src/routes/learner.routes";
 
 class App {
   constructor() {
@@ -33,7 +33,7 @@ class App {
     this.app.use("/", home);
     this.app.use("/users/", usuarioRoutes);
     this.app.use("/auth", authRoutes);
-    this.app.use("/alunos", alunoRoutes);
+    this.app.use("/learners", learnerRoutes);
   }
 }
 

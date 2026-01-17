@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 
-export default class Alunos extends Model {
+export default class Learners extends Model {
   static init(sequelize) {
     return super.init(
       {
@@ -78,9 +78,9 @@ export default class Alunos extends Model {
       },
       {
         sequelize,
-        modelName: "Aluno",
-        tableName: "alunos",
-      }
+        modelName: "Learners",
+        tableName: "learners",
+      },
     );
   }
 }
