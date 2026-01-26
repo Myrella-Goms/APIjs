@@ -34,7 +34,32 @@ class LearnersController {
       return response;
     } catch (error) {
       return res.status(400).json({
-        errors: error.erros.map((err) => err.message),
+        errors: error.errors.map((err) => err.message),
+      });
+    }
+  }
+
+  async createBulk(req, res) {
+
+    try {
+      const responses = [];
+
+      for (let learnerData of req.body) {
+        const learner = await Learners.create(learnerData);
+
+        responses.push({
+          nome: learner.nome,
+          sobrenome: learner.sobrenome,
+          idade: learner.idade,
+          peso: learner.peso,
+        });
+      }
+
+      res.json(responses);
+      return responses;
+    } catch (error) {
+      return res.status(400).json({
+        errors: error.errors?.map((err) => err.message),
       });
     }
   }
