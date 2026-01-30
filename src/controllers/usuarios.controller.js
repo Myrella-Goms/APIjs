@@ -46,7 +46,7 @@ class UsuariosController {
 
   async update(req, res) {
     try {
-      const userId = await Usuarios.findByPk(req.userId);
+      const userId = req.userId;
 
       if (!userId) {
         throw new Error("User Id inválido");

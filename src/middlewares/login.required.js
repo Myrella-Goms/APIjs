@@ -13,6 +13,7 @@ export default async (req, res, next) => {
     }
 
     const [, token ]= authorization.split(' ');
+    //const token = authorization.split(' ')[1] outra forma de acessar o token sem usar destructuring
 
     try {
         const dados = jwt.verify(token, process.env.JWT_SECRET); //obtendo dados do usuario

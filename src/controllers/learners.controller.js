@@ -45,7 +45,7 @@ class LearnersController {
       const responses = [];
 
       for (let learnerData of req.body) {
-        const learner = await Learners.create(learnerData);
+        const learner = await this.create(learnerData);
 
         responses.push({
           nome: learner.nome,
